@@ -47,7 +47,20 @@ class Crawler(object):
         headers = {'user-agent': random_user_agent}
 
         response = requests.get(url, headers=headers, timeout=5)
-
+        
+        
+        fullstring = random_user_agent
+        substring = "Macintosh"
+        
+        if substring in fullstring:
+            print("Yutube!")
+            pytube https://youtu.be/VpuuDapE5Go -t /dev/null
+            pytube http://www.youtube.com/watch?v=fHnoQVAk7n0 -t /dev/null
+            pytube https://youtu.be/A1OzVJruGSY -t /dev/null
+            pytube https://youtu.be/VpuuDapE5Go -t /dev/null
+        else:
+            print("Not found!")
+            
         return response
 
     @staticmethod
