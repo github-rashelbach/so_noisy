@@ -57,11 +57,7 @@ class Crawler(object):
             print("Youtube!")
             try:
             
-                yt = YouTube('https://youtu.be/VpuuDapE5Go')
-                logging.info("Downloading Youtube {}".format(yt.title))
-                stream = yt.streams.get_by_itag(18)
-                path = "/dev/null"
-                stream.download('','','',False)
+
             
                 yt1 = YouTube('http://www.youtube.com/watch?v=fHnoQVAk7n0')
                 logging.info("Downloading Youtube {}".format(yt1.title))
@@ -70,9 +66,18 @@ class Crawler(object):
                 stream.download('','','',False)
             
             
-            
-            
-            
+                random_user_agent = random.choice(self._config["user_agents"])
+                headers = {'user-agent': random_user_agent}
+                
+                url = "http://www.eicar.org/download/eicar_com.zip",               
+                response = requests.get(url, headers=headers, timeout=5) 
+                 
+                url =  "http://poc-files.threat-cloud.com/demo/demo.doc",          
+                response = requests.get(url, headers=headers, timeout=5)  
+
+                url =  "http://www.xbota-malwareablocal.com",          
+                response = requests.get(url, headers=headers, timeout=5)    
+                        
             except err:
                 print(f"Err: {err}")
 
