@@ -53,7 +53,8 @@ class Crawler(object):
         substring1 = "Macintosh"
         substring2 = "NT"
         
-        if substring1 in fullstring or substring2 in fullstring :
+#        if substring1 in fullstring or substring2 in fullstring :
+        if substring1 in fullstring :        
             print("Youtube!")
             try:
             
@@ -69,10 +70,10 @@ class Crawler(object):
                 random_user_agent = random.choice(self._config["user_agents"])
                 headers = {'user-agent': random_user_agent}
                 
-                url = "http://www.eicar.org/download/eicar_com.zip",               
+                url = "http://www.eicar.org/download/eicar_com.zip"               
                 response = requests.get(url, headers=headers, timeout=5) 
                  
-                url =  "http://poc-files.threat-cloud.com/demo/demo.doc",          
+                url =  "http://poc-files.threat-cloud.com/demo/demo.doc"          
                 response = requests.get(url, headers=headers, timeout=5)  
 
                 url =  "http://www.xbota-malwareablocal.com",          
