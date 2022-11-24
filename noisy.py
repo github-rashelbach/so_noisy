@@ -6,7 +6,7 @@ import random
 import re
 import sys
 import time
-
+from pytube import YouTube
 import requests
 from urllib3.exceptions import LocationParseError
 
@@ -50,39 +50,35 @@ class Crawler(object):
         
         
         fullstring = random_user_agent
-        substring = "Macintosh"
+        substring1 = "Macintosh"
+        substring2 = "NT"
         
-        if substring in fullstring:
+        if substring1 in fullstring or substring2 in fullstring :
             print("Youtube!")
             try:
-              yt1 = YouTube('https://youtu.be/VpuuDapE5Go')
-              logging.info("Visiting {}".format('https://youtu.be/VpuuDapE5Go'))
-              videos = yt1.videos
-              video = yt1.get('mp4', '720p')
-              path = '/dev/null'
-              video.download(path)
-              yt2 = YouTube('http://www.youtube.com/watch?v=fHnoQVAk7n0')
-              logging.info("Visiting {}".format('http://www.youtube.com/watch?v=fHnoQVAk7n0'))
-              videos = yt2.videos
-              video = yt2.get('mp4', '720p')
-              path = '/dev/null'
-              video.download(path)
-              yt3 = YouTube('https://youtu.be/A1OzVJruGSY')
-              logging.info("Visiting {}".format('https://youtu.be/A1OzVJruGSY'))
-              videos = yt3.videos
-              video = yt3.get('mp4', '720p')
-              path = '/dev/null'
-              video.download(path)
-              yt4 = YouTube('https://youtu.be/VpuuDapE5Go')
-              logging.info("Visiting {}".format('https://youtu.be/VpuuDapE5Go'))
-              videos = yt4.videos
-              video = yt4.get('mp4', '720p')
-              path = '/dev/null'
-              video.download(path)
-            except NameError:    # Python 3
-              pass
+            
+                yt = YouTube('https://youtu.be/VpuuDapE5Go')
+                logging.info("Downloading Youtube {}".format(yt.title))
+                stream = yt.streams.get_by_itag(18)
+                path = "/dev/null"
+                stream.download('','','',False)
+            
+                yt1 = YouTube('http://www.youtube.com/watch?v=fHnoQVAk7n0')
+                logging.info("Downloading Youtube {}".format(yt1.title))
+                stream = yt1.streams.get_by_itag(18)
+                path = "/dev/null"
+                stream.download('','','',False)
+            
+            
+            
+            
+            
+            except err:
+                print(f"Err: {err}")
+
+
         else:
-            print("Not !")
+            pass
             
         return response
 
