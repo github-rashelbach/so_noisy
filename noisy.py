@@ -15,7 +15,7 @@ try:                 # Python 2
 except ImportError:  # Python 3
     from urlparse import urljoin, urlparse
 
-try:                 # Python 2
+try:               # Python 2
     reload(sys)
     sys.setdefaultencoding('latin-1')
 except NameError:    # Python 3
@@ -53,13 +53,36 @@ class Crawler(object):
         substring = "Macintosh"
         
         if substring in fullstring:
-            print("Yutube!")
-            pytube https://youtu.be/VpuuDapE5Go -t /dev/null
-            pytube http://www.youtube.com/watch?v=fHnoQVAk7n0 -t /dev/null
-            pytube https://youtu.be/A1OzVJruGSY -t /dev/null
-            pytube https://youtu.be/VpuuDapE5Go -t /dev/null
+            print("Youtube!")
+            try:
+              yt1 = YouTube('https://youtu.be/VpuuDapE5Go')
+              logging.info("Visiting {}".format('https://youtu.be/VpuuDapE5Go'))
+              videos = yt1.videos
+              video = yt1.get('mp4', '720p')
+              path = '/dev/null'
+              video.download(path)
+              yt2 = YouTube('http://www.youtube.com/watch?v=fHnoQVAk7n0')
+              logging.info("Visiting {}".format('http://www.youtube.com/watch?v=fHnoQVAk7n0'))
+              videos = yt2.videos
+              video = yt2.get('mp4', '720p')
+              path = '/dev/null'
+              video.download(path)
+              yt3 = YouTube('https://youtu.be/A1OzVJruGSY')
+              logging.info("Visiting {}".format('https://youtu.be/A1OzVJruGSY'))
+              videos = yt3.videos
+              video = yt3.get('mp4', '720p')
+              path = '/dev/null'
+              video.download(path)
+              yt4 = YouTube('https://youtu.be/VpuuDapE5Go')
+              logging.info("Visiting {}".format('https://youtu.be/VpuuDapE5Go'))
+              videos = yt4.videos
+              video = yt4.get('mp4', '720p')
+              path = '/dev/null'
+              video.download(path)
+            except NameError:    # Python 3
+              pass
         else:
-            print("Not found!")
+            print("Not !")
             
         return response
 
