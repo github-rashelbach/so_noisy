@@ -1,7 +1,8 @@
 version: '3'
 
 services:
-  noisy:
+  so_noisy:
     build:
-      context: ../../
+      context: ../
+    restart: unless-stopped
     command: --config config.json
