@@ -33,6 +33,23 @@ You can see the rules that are in place with this command:
 
 ip rule
 
+
+
+-------\
+
+Monitor Internet Bandwidth Usage on Linux
+
+apt instal vnstat
+systemctl enable --now vnstat
+systemctl status vnstat
+
+
+$ vnstat
+# vnstat -d -i eth0
+
+From <https://www.baeldung.com/linux/bandwidth-usage-monitoring> 
+
+
 You can see what is in a particular routing table with this command:
 
 ip route show table default-via-vlan1
