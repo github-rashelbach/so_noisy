@@ -27,6 +27,17 @@ ip rule add pref 30002 from 172.21.0.3 table default-via-vlan2
 ip rule add pref 30003 from 172.21.0.4 table default-via-vlan3
 ip rule add pref 30004 from 172.21.0.5 table default-via-vlan4
 
+ip rule add pref 30001 from 172.24.0.2 table default-via-vlan1
+ip rule add pref 30002 from 172.24.0.3 table default-via-vlan2
+ip rule add pref 30003 from 172.24.0.4 table default-via-vlan3
+ip rule add pref 30004 from 172.24.0.5 table default-via-vlan4
+
+ip rule del pref 30001 
+ip rule del pref 30002 
+ip rule del pref 30003 
+ip rule del pref 30004 
+
+
 --------\
 
 You can see the rules that are in place with this command:
