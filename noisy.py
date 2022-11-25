@@ -51,40 +51,52 @@ class Crawler(object):
         
         fullstring = random_user_agent
         substring1 = "Macintosh"
-        substring2 = "NT"
+        substring2 = "Gecko"
         
-#        if substring1 in fullstring or substring2 in fullstring :
+
+        if substring2 in fullstring :        
+            print("cpCheckME!!!")
+            try:
+            
+                random_user_agent = random.choice(self._config["user_agents"])
+                headers = {'user-agent': random_user_agent}
+                
+                url = "http://www.eicar.org/download/eicar_com.zip"  
+                logging.info("Downloading  {}".format(url))             
+                response = requests.get(url, headers=headers, timeout=5) 
+                 
+                url =  "http://poc-files.threat-cloud.com/demo/demo.doc"
+                logging.info("Downloading  {}".format(url))           
+                response = requests.get(url, headers=headers, timeout=5)  
+
+                url =  "http://www.xbota-malwareablocal.com"
+                logging.info("Downloading  {}".format(url))           
+                response = requests.get(url, headers=headers, timeout=5)    
+                        
+            except :
+                print(f"Err: {ValueError}")
+        else:
+            pass
+            
+            
         if substring1 in fullstring :        
             print("Youtube!")
             try:
             
 
-            
-                yt1 = YouTube('http://www.youtube.com/watch?v=fHnoQVAk7n0')
+                url =  'http://www.youtube.com/watch?v=fHnoQVAk7n0'
+                logging.info("Downloading Youtube {}".format(url))
+                yt1 = YouTube(url)
                 logging.info("Downloading Youtube {}".format(yt1.title))
                 stream = yt1.streams.get_by_itag(18)
                 path = "/dev/null"
                 stream.download('','','',False)
-            
-            
-                random_user_agent = random.choice(self._config["user_agents"])
-                headers = {'user-agent': random_user_agent}
-                
-                url = "http://www.eicar.org/download/eicar_com.zip"               
-                response = requests.get(url, headers=headers, timeout=5) 
-                 
-                url =  "http://poc-files.threat-cloud.com/demo/demo.doc"          
-                response = requests.get(url, headers=headers, timeout=5)  
-
-                url =  "http://www.xbota-malwareablocal.com",          
-                response = requests.get(url, headers=headers, timeout=5)    
+       
                         
-            except err:
-                print(f"Err: {err}")
-
-
+            except :
+                print(f"Err: {ValueError}")
         else:
-            pass
+            pass            
             
         return response
 
