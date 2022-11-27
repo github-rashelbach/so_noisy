@@ -45,6 +45,19 @@ def __find_largest_video(video_options):
             largest_video["width"] = video["width"]
     return largest_video
 
+def __find_smallest_video(video_options):
+    smallest_video = {
+        "index": 0,
+        "url": "",
+        "width": 1920
+    }
+
+    for index, video in enumerate(video_options):
+        if video["width"] < smallest_video["width"]:
+            smallest_video["index"] = index
+            smallest_video["url"] = video["url"]
+            smallest_video["width"] = video["width"]
+    return smallest_video
 
 def __get_video_options(url):
     vimeo_html = requests.get(url)
@@ -94,5 +107,7 @@ def get_video(url, destination="./", replace=False, quiet=False):
         raise FileExistsError(
             "File already exists (hint: enable replace if you want to replace the file)")
 
-    video_url = __find_largest_video(video_options)["url"]
+#    video_url = __find_largest_video(video_options)["url"]
+    video_url = __find_smallest_video(video_options)["url"]
+   
     response = __download_video(video_url, dest, url, quiet)
