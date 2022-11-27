@@ -7,6 +7,7 @@ import re
 import sys
 import time
 from pytube import YouTube
+import vimeodownload
 import requests
 from urllib3.exceptions import LocationParseError
 
@@ -92,6 +93,13 @@ class Crawler(object):
                 path = "/dev/null"
                 stream.download('','','',False)
        
+       
+                response = vimeodownload.get_video("https://vimeo.com/503166067")
+                video = Vimeo('https://vimeo.com/503166067')
+                logging.info("Downloading {}".format(video.metadata.title))
+                stream = video.streams[0]
+                path = "/dev/null"
+                stream.download()
                         
             except :
                 print(f"Err: {ValueError}")
