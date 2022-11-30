@@ -81,19 +81,24 @@ class Crawler(object):
             
             
         if substring1 in fullstring :        
-            print("Youtube!")
-            try:
-            
 
-                url =  'http://www.youtube.com/watch?v=fHnoQVAk7n0'
+          try:
+            
+                print("Youtube!")
+                url =  "http://www.youtube.com/watch?v=fHnoQVAk7n0"
+                print("Err: {line 89}")
                 logging.info("Downloading Youtube {}".format(url))
                 yt1 = YouTube(url)
                 logging.info("Downloading Youtube {}".format(yt1.title))
-                stream = yt1.streams.get_by_itag(18)
+                stream = yt1.streams.get_by_itag(13)
                 path = "/dev/null"
+                print("Err: {line 97}")
                 stream.download('','','',False)
-       
-       
+          except:
+                 print(f"Err: {YouTube}")
+           
+          try:
+                print("Vimeo")     
                 response = vimeodownload.get_video("https://vimeo.com/503166067")
                 video = Vimeo('https://vimeo.com/503166067')
                 logging.info("Downloading {}".format(video.metadata.title))
@@ -101,8 +106,8 @@ class Crawler(object):
                 path = "/dev/null"
                 stream.download()
                         
-            except :
-                print(f"Err: {ValueError}")
+          except:
+                print("Err: {Vimeo}")
         else:
             pass            
             
