@@ -5,4 +5,16 @@ services:
     build:
       context: ../
     restart: unless-stopped
+    networks:
+      default:
     command: --config config.json
+    
+    
+    
+networks:
+    default:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: "172.24.0.0/24"
