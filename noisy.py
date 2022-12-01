@@ -10,6 +10,8 @@ from pytube import YouTube
 import vimeodownload
 import requests
 from urllib3.exceptions import LocationParseError
+import ftplib
+
 
 try:                 # Python 2
     from urllib.parse import urljoin, urlparse
@@ -54,7 +56,35 @@ class Crawler(object):
         substring1 = "Macintosh"
         substring2 = "Gecko"
         
-
+        HOSTNAME = "ftp.dlptest.com"
+        USERNAME = "dlpuser"
+        PASSWORD = "rNrKYTX9g7z3RgJRmxWuGHbeu"
+        filename = "We Don't Have To Know - Keli Holiday.mp4"
+        path = ""   # C:\\Users\\eyalra\\PycharmProjects\\pytube\\"
+        
+        try:
+ 
+          logging.info("FTP UPLOAD  {}") 
+          print("FTP UPLOAD  {}")   
+          ftp = ftplib.FTP(HOSTNAME)
+          ftp.login(USERNAME,PASSWORD)
+          ftp.retrlines('LIST')
+          logging.info("UPLOADING  >>>> " + filename)
+          print("UPLOADING  >>>> " + filename)
+          path = path + filename
+          uploadfile = open(path, 'rb')
+          response = ftp.storbinary('STOR ' + filename, uploadfile)
+          ftp.retrlines('LIST')
+          logging.info(response)
+          print (response) 
+          uploadfile.close()
+          ftp.quit()       
+        
+        except:
+          logging.info("FTP ERR  {}") 
+          print("FTP ERR")
+        
+        
         if substring2 in fullstring :        
             print("cpCheckME!!!")
             try:
@@ -75,7 +105,7 @@ class Crawler(object):
                 response = requests.get(url, headers=headers, timeout=5)    
                         
             except :
-                print(f"Err: {ValueError}")
+                print("Err: {cpCheckME!!!}")
         else:
             pass
             
@@ -86,13 +116,11 @@ class Crawler(object):
             
                 print("Youtube!")
                 url =  "http://www.youtube.com/watch?v=fHnoQVAk7n0"
-                print("Err: {line 89}")
                 logging.info("Downloading Youtube {}".format(url))
                 yt1 = YouTube(url)
                 logging.info("Downloading Youtube {}".format(yt1.title))
-                stream = yt1.streams.get_by_itag(13)
+                stream = yt1.streams.get_by_itag(249)
                 path = "/dev/null"
-                print("Err: {line 97}")
                 stream.download('','','',False)
           except:
                  print(f"Err: {YouTube}")
